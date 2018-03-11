@@ -5,63 +5,51 @@ public class FracCalc {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Scanner userInput = new Scanner(System.in);
-		String x = null;
 		String fraction = userInput.nextLine();
-		if (fraction.contains("+")) {
-			x = "+";
-			
-		} 
-		else if (fraction.contains("-")) {
-			x = "-";
-		}
-		
-		else if (fraction.contains("*")) {
-			x = "*";
-		}
-		 
-		else {
-			x = "/";
-		}
-		boolean isNegative1 = false; 
-		boolean isNegative2 = false; 
-		String operand1 = null;
-		String operand2 = null;
-		if (x.equals("-")) {
-			 operand1 = fraction.substring(0, fraction.indexOf(x, fraction.indexOf(x) + 1) - 1);
-			 operand2 = fraction.substring(fraction.indexOf(x, fraction.indexOf(x) + 1) + 2);
-		}
-		else {
-			 operand1 = fraction.substring(0, fraction.indexOf(x) - 1);	
-			 operand2 = fraction.substring(fraction.indexOf(x) + 2);
-			
-		}
-		
-		if (operand1.contains("-")){
+		String operand1 = fraction.substring(0, fraction.indexOf(" "));
+		String x = fraction.substring(fraction.indexOf(" ") + 1, fraction.indexOf(" ") + 2);
+		String operand2 = fraction.substring(fraction.indexOf(" ") + 3);
+		boolean isNegative1 = false;
+		boolean isNegative2 = false;
+		if (operand1.contains("-")) {
 			operand1 = operand1.substring(1);
 			isNegative1 = true;
 		}
-		if (operand2.contains("-")){
+		if (operand2.contains("-")) {
 			operand2 = operand2.substring(1);
 			isNegative2 = true;
 		}
 		if (!operand1.contains("/")) {
-			operand1+="/1";
+			operand1 += "/1";
 		}
-		
+
 		if (!operand2.contains("/")) {
-			operand2+="/1";
+			operand2 += "/1";
 		}
-		System.out.println(operand1);
-		System.out.println(operand2);
-		Fraction result = new Fraction(operand1, operand2, isNegative1, isNegative2);
+		Fraction frac = new Fraction(operand1, operand2, isNegative1, isNegative2);
+		if (operand1.contains("_") || operand2.contains("_")) {
+			
+			if (!operand1.contains("_")) {
+				operand1 = "0_" + operand1;
+			}
+			if (!operand2.contains("_")) {
+				operand2 = "0_" + operand2;
+			}
+			frac = new MixedNumber(operand1, operand2, isNegative1, isNegative2);
+		}
+		String answer = null;
 		if (x.equals("+")) {
-			System.out.println(result.add());
+			answer = frac.add();
 		}
 		if (x.equals("-")) {
-			System.out.println(result.subtract());
+			answer = frac.subtract();
 		}
-		
-		
-
+		if (x.equals("*")) {
+			answer = frac.multiply();
+		}
+		if (x.equals("/")) {
+			answer = frac.divide();
+		}
+		System.out.println(answer);
 	}
-	}
+}
