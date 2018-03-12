@@ -3,7 +3,7 @@ public class MixedNumber extends Fraction{
 private String whole1;
 private String whole2;
 	public MixedNumber(String operand1, String operand2, boolean isNegative1, boolean isNegative2) {
-		super(operand1, operand2, isNegative1, isNegative1);
+		super(operand1, operand2, isNegative1, isNegative2);
 		this.whole1 = operand1.substring(0, operand1.indexOf("_"));
 		this.whole2 = operand2.substring(0, operand2.indexOf("_"));
 	}
