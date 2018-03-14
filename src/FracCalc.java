@@ -36,11 +36,19 @@ public class FracCalc {
 			}
 			frac = new MixedNumber(operand1, operand2, isNegative1, isNegative2);
 		}
-		String answer = null;
+		
 		if (x.equals("+")) {
-			answer = frac.add();
+			frac.add();
 		}
-		System.out.println(answer);
+		if (x.equals("-")) {
+			frac.subtract();
+		}
+		if (x.equals("*")) {
+			frac.multiply();
+		}
+		if (x.equals("/")) {
+			frac.divide();
+		}
 
 	}
 }

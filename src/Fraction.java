@@ -53,11 +53,10 @@ public class Fraction {
 		return denom1;
 	}
 
-	public String add() {
+	public void add() {
 		int combinedDenom = getDenom1() * getDenom2();
 		int combinedNum = getNum1() * getDenom2() + getNum2() * getDenom1();
 		reduce(combinedNum, combinedDenom);
-		return "";
 	}
 
 	public void subtract() {
@@ -78,18 +77,20 @@ public class Fraction {
 		reduce(Num, Denom);
 	}
 
-	public String reduce(int numerator, int denominator) {
+	public void reduce(int numerator, int denominator) {
 		int whole = 0;
 		int x = denominator;
 		int num = numerator;
 		int denom = denominator;
 		if (denom == 0) {
-			return "Infinity.";
+			System.out.println("Infinity.");
+			return;
 		}
 		if (num > denom) {
 			whole = num / denom;
 			if (num % denom == 0) {
-				return whole + "";
+				System.out.println(whole);
+				return;
 			} else {
 				num -= denom * whole;
 			}
@@ -104,12 +105,12 @@ public class Fraction {
 		}
 
 		if (whole > 0) {
-			return whole + "_" + num + "/" + denom;
+			System.out.println(whole + "_" + num + "/" + denom);
 		}
 		if (denom == 1 || num == 0) {
-			return num + "";
+			System.out.println(num);
 		} else {
-			return num + "/" + denom;
+			System.out.println(num + "/" + denom);
 		}
 	}
 }
