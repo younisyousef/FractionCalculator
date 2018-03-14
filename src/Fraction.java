@@ -12,10 +12,10 @@ public class Fraction {
 		String save = operand1;
 		String save2 = operand2;
 		if (operand1.contains("_")) {
-			operand1  = operand1.substring(operand1.indexOf("_") + 1);
+			operand1 = operand1.substring(operand1.indexOf("_") + 1);
 		}
 		if (operand2.contains("_")) {
-			operand2  = operand2.substring(operand2.indexOf("_") + 1);
+			operand2 = operand2.substring(operand2.indexOf("_") + 1);
 		}
 		this.num1 = operand1.substring(0, operand1.indexOf("/"));
 		this.denom1 = operand1.substring(operand1.indexOf("/") + 1);
@@ -56,24 +56,60 @@ public class Fraction {
 	public String add() {
 		int combinedDenom = getDenom1() * getDenom2();
 		int combinedNum = getNum1() * getDenom2() + getNum2() * getDenom1();
-		return combinedNum + "/" + combinedDenom;
+		reduce(combinedNum, combinedDenom);
+		return "";
 	}
 
-	public String subtract() {
+	public void subtract() {
 		int combinedDenom = getDenom1() * getDenom2();
 		int combinedNum = getNum1() * getDenom2() - getNum2() * getDenom1();
-		return combinedNum + "/" + combinedDenom;
+		reduce(combinedNum, combinedDenom);
 	}
 
-	public String multiply() {
+	public void multiply() {
 		int Denom = getDenom1() * getDenom2();
 		int Num = getNum1() * getNum2();
-		return Num + "/" + Denom;
+		reduce(Num, Denom);
 	}
 
-	public String divide() {
+	public void divide() {
 		int Num = getNum1() * getDenom2();
 		int Denom = getNum2() * getDenom1();
-		return Num + "/" + Denom;
+		reduce(Num, Denom);
+	}
+
+	public String reduce(int numerator, int denominator) {
+		int whole = 0;
+		int x = denominator;
+		int num = numerator;
+		int denom = denominator;
+		if (denom == 0) {
+			return "Infinity.";
+		}
+		if (num > denom) {
+			whole = num / denom;
+			if (num % denom == 0) {
+				return whole + "";
+			} else {
+				num -= denom * whole;
+			}
+		}
+		while (x > 0) {
+			if (denom % x == 0 && num % x == 0) {
+				denom /= x;
+				num /= x;
+			}
+
+			x--;
+		}
+
+		if (whole > 0) {
+			return whole + "_" + num + "/" + denom;
+		}
+		if (denom == 1 || num == 0) {
+			return num + "";
+		} else {
+			return num + "/" + denom;
+		}
 	}
 }

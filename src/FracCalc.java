@@ -1,11 +1,10 @@
-import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 public class FracCalc {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Scanner userInput = new Scanner(System.in);
-		String fraction = userInput.nextLine();
+		String fraction = JOptionPane.showInputDialog("Enter your operation.");
 		String operand1 = fraction.substring(0, fraction.indexOf(" "));
 		String x = fraction.substring(fraction.indexOf(" ") + 1, fraction.indexOf(" ") + 2);
 		String operand2 = fraction.substring(fraction.indexOf(" ") + 3);
@@ -28,7 +27,7 @@ public class FracCalc {
 		}
 		Fraction frac = new Fraction(operand1, operand2, isNegative1, isNegative2);
 		if (operand1.contains("_") || operand2.contains("_")) {
-			
+
 			if (!operand1.contains("_")) {
 				operand1 = "0_" + operand1;
 			}
@@ -41,15 +40,7 @@ public class FracCalc {
 		if (x.equals("+")) {
 			answer = frac.add();
 		}
-		if (x.equals("-")) {
-			answer = frac.subtract();
-		}
-		if (x.equals("*")) {
-			answer = frac.multiply();
-		}
-		if (x.equals("/")) {
-			answer = frac.divide();
-		}
 		System.out.println(answer);
+
 	}
 }
