@@ -1,3 +1,4 @@
+import javax.swing.JOptionPane;
 
 public class Fraction {
 
@@ -83,13 +84,13 @@ public class Fraction {
 		int num = numerator;
 		int denom = denominator;
 		if (denom == 0) {
-			System.out.println("Infinity.");
+			JOptionPane.showMessageDialog(null, "Infinity.");
 			return;
 		}
 		if (num > denom) {
 			whole = num / denom;
 			if (num % denom == 0) {
-				System.out.println(whole);
+				JOptionPane.showMessageDialog(null, whole);
 				return;
 			} else {
 				num -= denom * whole;
@@ -105,12 +106,13 @@ public class Fraction {
 		}
 
 		if (whole > 0) {
-			System.out.println(whole + "_" + num + "/" + denom);
+			JOptionPane.showMessageDialog(null, whole + "_" + num + "/" + denom);
+			return;
 		}
 		if (denom == 1 || num == 0) {
-			System.out.println(num);
+			JOptionPane.showMessageDialog(null, num);
 		} else {
-			System.out.println(num + "/" + denom);
+			JOptionPane.showMessageDialog(null, num + "/" + denom);
 		}
 	}
 }
