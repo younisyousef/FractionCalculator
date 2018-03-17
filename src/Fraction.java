@@ -1,7 +1,9 @@
+import java.awt.event.ActionEvent;
+
 import javax.swing.JOptionPane;
 
-public class Fraction {
-
+public class Fraction extends FracCalc{
+	private String answer;
 	private String denom1;
 	private String denom2;
 	private String num1;
@@ -27,7 +29,7 @@ public class Fraction {
 		operand1 = save;
 		operand2 = save2;
 	}
-
+	
 	public int getNum1() {
 		int num1 = Integer.parseInt(this.num1);
 		if (isNegative1) {
@@ -59,7 +61,9 @@ public class Fraction {
 		int combinedNum = getNum1() * getDenom2() + getNum2() * getDenom1();
 		reduce(combinedNum, combinedDenom);
 	}
-
+	public String getAnswer() {
+		return answer;
+	}
 	public void subtract() {
 		int combinedDenom = getDenom1() * getDenom2();
 		int combinedNum = getNum1() * getDenom2() - getNum2() * getDenom1();
@@ -79,18 +83,20 @@ public class Fraction {
 	}
 
 	public void reduce(int numerator, int denominator) {
+		
 		int whole = 0;
 		int x = denominator;
 		int num = numerator;
 		int denom = denominator;
 		if (denom == 0) {
-			JOptionPane.showMessageDialog(null, "Infinity.");
+			answer = ("Infinity.");
 			return;
+			
 		}
 		if (num > denom) {
 			whole = num / denom;
 			if (num % denom == 0) {
-				JOptionPane.showMessageDialog(null, whole);
+				answer = (whole + "");
 				return;
 			} else {
 				num -= denom * whole;
@@ -106,13 +112,14 @@ public class Fraction {
 		}
 
 		if (whole > 0) {
-			JOptionPane.showMessageDialog(null, whole + "_" + num + "/" + denom);
+			answer = (whole + "_" + num + "/" + denom);
 			return;
 		}
 		if (denom == 1 || num == 0) {
-			JOptionPane.showMessageDialog(null, num);
+			answer = (num + "");
 		} else {
-			JOptionPane.showMessageDialog(null, num + "/" + denom);
+			answer = (num + "/" + denom);
 		}
 	}
+
 }
