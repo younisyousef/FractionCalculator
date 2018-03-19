@@ -37,7 +37,7 @@ public class Fraction extends FracCalc{
 		}
 		return num1;
 	}
-
+	
 	public int getNum2() {
 		int num2 = Integer.parseInt(this.num2);
 		if (isNegative2) {
@@ -55,7 +55,8 @@ public class Fraction extends FracCalc{
 		int denom1 = Integer.parseInt(this.denom1);
 		return denom1;
 	}
-
+	
+	
 	public void add() {
 		int combinedDenom = getDenom1() * getDenom2();
 		int combinedNum = getNum1() * getDenom2() + getNum2() * getDenom1();

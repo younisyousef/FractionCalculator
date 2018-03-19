@@ -178,6 +178,8 @@ public class FracCalc extends JFrame implements WindowListener, ActionListener {
 			y++;
 			z++;
 			}
+	
+		}
 		if (e.getSource() == fractionBar ) {
 			text.setText(text.getText() + "/");
 			
@@ -192,7 +194,6 @@ public class FracCalc extends JFrame implements WindowListener, ActionListener {
 		if (e.getSource() == clear) {
 			text.setText("");
 			}
-		}
 }
 
 	public boolean getTrue() {
@@ -221,9 +222,19 @@ public class FracCalc extends JFrame implements WindowListener, ActionListener {
 			if (window.getTrue()) {
 
 				String fraction = window.getText();
-				String operand1 = fraction.substring(0, fraction.indexOf(" "));
-				String x = fraction.substring(fraction.indexOf(" ") + 1, fraction.indexOf(" ") + 2);
-				String operand2 = fraction.substring(fraction.indexOf(" ") + 3);
+				String operand1 = null;
+				String x = null;
+				String operand2 = null;
+				try {
+				operand1 = fraction.substring(0, fraction.indexOf(" "));
+				 x = fraction.substring(fraction.indexOf(" ") + 1, fraction.indexOf(" ") + 2);
+				 operand2 = fraction.substring(fraction.indexOf(" ") + 3);
+				}
+				catch (Exception e) {
+					System.out.println("Error");
+					
+				}
+				
 				boolean isNegative1 = false;
 				boolean isNegative2 = false;
 				if (operand1.contains("-")) {
@@ -241,6 +252,7 @@ public class FracCalc extends JFrame implements WindowListener, ActionListener {
 				if (!operand2.contains("/")) {
 					operand2 += "/1";
 				}
+				
 				Fraction frac = new Fraction(operand1, operand2, isNegative1, isNegative2);
 				if (operand1.contains("_") || operand2.contains("_")) {
 
@@ -252,7 +264,7 @@ public class FracCalc extends JFrame implements WindowListener, ActionListener {
 					}
 					frac = new MixedNumber(operand1, operand2, isNegative1, isNegative2);
 				}
-
+				try {
 				if (x.equals("+")) {
 					frac.add();
 				}
@@ -264,6 +276,11 @@ public class FracCalc extends JFrame implements WindowListener, ActionListener {
 				}
 				if (x.equals("÷")) {
 					frac.divide();
+				}
+				}
+				catch (Exception e){
+					System.out.println("Error");
+					
 				}
 				window.setText(frac.getAnswer());
 				window.setTrue();
